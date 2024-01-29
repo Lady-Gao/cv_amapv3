@@ -1,23 +1,38 @@
+# cv_amapv3
 
-# cv_amapv3 地图组件
+基于Vue3 封装的地图组件
 
-## 打包
+### 文档介绍
+https://monstergao.gitee.io/cv_amapv3/
+https://cv-components-v3-docs.vercel.app/components/amap/Map.html
+
+### 安装
+>npm i cv_amapv3 -S
+
+
+### 引用
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+import cv_amapv3 from 'cv_amapv3'
+
+createApp(App)
+        ... 
+    .use(cv_amapv3)
+    .mount('#app')
 ```
-npm run build
+
+## 使用
+```vue
+<template>
+  <Map :zoom="3" :center='[116.397428, 39.90923]'>
+   </Map>
+</template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+
+const position=ref([116.497428, 39.20923])
+
+</script>
 ```
-## 生成lib文件夹（在vite.config.js里配置好）
-![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/25b6c6ab732f43d5a8cdc1573e6d9df1.png)
-vite.config.js
-![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/fe1bd971a834475dab5eaa51d8319a6f.png)
-
-## 修改版本号
-version每发布一次需要修改一次，
-type设置为module
-![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/467df03e68f243c69f675c6f70c3513a.png)
-
-##  上传到npm
-在cv_amapv3项目下打开终端
-> npm publish
-
-https://www.npmjs.com/package/cv_amapv3
-
