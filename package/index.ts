@@ -1,36 +1,22 @@
 
-// https://monstergao.gitee.io/cv_amapv3/
-import Map from "./Map/index";
-import Marker from "./Marker/index";
-import Liner from "./Liner/index";
-import InfoWindow from "./InfoWindow/index";
-import MouseTool from "./MouseTool/index";
-import PathSimplifierIns from "./PathSimplifierIns/index";
-import MoveAnimation from "./MoveAnimation/index";
-import EditPlugin from "./EditPlugin/index";
 
-const modules={
-    Map,
-    Marker,
-    Liner,
-    InfoWindow,
-    MouseTool,
-    PathSimplifierIns ,
-    MoveAnimation,
-    EditPlugin,
+const modulesFiles = import.meta.glob('./*/index.ts', { eager: true });
+const componentsArr: { [key: string]: any } = {};
+
+for (const key in modulesFiles) {
+  const value = modulesFiles[key];
+  componentsArr[value.default.name] = value.default;
 }
 
-const install = function (app:any) {
-    for (var key in modules) {
-        app.component(key,modules[key]);
-    }
-    
+const install = (app: any) => {
+  for (const key in componentsArr) {
+    app.component(key, componentsArr[key]);
+  }
 };
 
-let moduleComponent = {
-    version: '0.0.6',
-     install,
-     ...modules
-}
+const moduleComponent = {
+  version: '0.0.6',
+  install,
+};
 
-export default moduleComponent
+export default moduleComponent;
